@@ -32,7 +32,18 @@
 
       <footer class="mastfoot mt-auto">
         <div class="inner">
-          <p>Update : 3/28/2018</p>
+          <p>Last update : <span id="date"></span>
+            <script>
+              fetch('https://api.github.com/repos/lei-liang/lei-liang.github.io/commits/master')
+              .then(response => response.json())
+              .then(data => {
+                document.getElementById("date").innerHTML = data.commit.committer.date;
+              })
+              .catch(err => {
+                document.getElementById("date").innerHTML = "An error ocurred";
+              });
+            </script>
+          </p>
         </div>
       </footer>
     </div>
